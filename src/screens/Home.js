@@ -1,12 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { Icon } from 'react-native-elements'
+import { Text, View, StatusBar } from 'react-native';
+import { createMaterialTopTabNavigator } from 'react-navigation';
+import { Icon } from 'react-native-elements';
 
 class HomeScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+         <StatusBar
+            barStyle="light-content"
+            backgroundColor="#21349e"
+          />
         <Text>Home!</Text>
       </View>
     );
@@ -33,7 +37,7 @@ class SettingsScreen extends React.Component {
   }
 }
 
-const TabNavigator = createMaterialBottomTabNavigator({
+const BottomTabs = createMaterialTopTabNavigator({
   Home: {
         screen: HomeScreen,
         navigationOptions: {
@@ -42,7 +46,7 @@ const TabNavigator = createMaterialBottomTabNavigator({
                 <Icon
                     name="home"
                     type='material'
-                    size={20}
+                    size={18}
                     color='#fff'
                 />
             )
@@ -56,7 +60,7 @@ const TabNavigator = createMaterialBottomTabNavigator({
                 <Icon
                     name="user"
                     type='font-awesome'
-                    size={20}
+                    size={18}
                     color='#fff'
                 />
             )
@@ -70,7 +74,7 @@ const TabNavigator = createMaterialBottomTabNavigator({
                 <Icon
                     name="settings"
                     type='material'
-                    size={20}
+                    size={18}
                     color='#fff'
                 />
             )
@@ -78,11 +82,16 @@ const TabNavigator = createMaterialBottomTabNavigator({
     },
 
 }, {
-  initialRouteName: 'Home',
-  shifting: true,
-  activeColor: '#f0edf6',
-  inactiveColor: '#3F51B5',
-  barStyle: { backgroundColor: '#3F51B5' },
+      initialRouteName: 'Home',
+      lazy: true,
+      tabBarOptions: {
+        activeColor: '#f0edf6',
+        inactiveColor: '#3F51B5',
+        tabStyle: { backgroundColor: '#3F51B5' },
+        showIcon: true,
+        showLabel: false
+      }
+
 });
 
-export default TabNavigator;
+export default BottomTabs;
